@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.log
+
+# VS Code
+.vscode/
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Data / outputs (GLSCLP)
+scans/
+output/
+exports/
+cache/
+models/
+runs/
+*.onnx
+*.safetensors
+
+# State files
+*.state.json
+.vsce_renamer_state.json
