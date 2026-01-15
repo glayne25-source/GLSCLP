@@ -1,0 +1,85 @@
+{
+  "version": "1.0.0",
+  "max_len": 80,
+  "delimiter": " ",
+  "token_order": [
+    "year",
+    "brand",
+    "set",
+    "player",
+    "card_number",
+    "rookie",
+    "hit",
+    "serial",
+    "insert",
+    "parallel",
+    "team_name",
+    "team_city"
+  ],
+  "required_tokens": [
+    "year",
+    "brand",
+    "set",
+    "player",
+    "card_number"
+  ],
+  "optional_tokens": [
+    "rookie",
+    "hit",
+    "serial",
+    "insert",
+    "parallel",
+    "team_name",
+    "team_city"
+  ],
+  "truncation_drop_order": [
+    "team_city",
+    "team_name",
+    "parallel",
+    "insert"
+  ],
+  "normalization": {
+    "team_city": {
+      "rule": "full_name_no_abbrev"
+    },
+    "card_number": {
+      "prefix": "#",
+      "strip_patterns": [
+        "(?i)\\\\bno\\\\.?\\\\b",
+        "(?i)\\\\bcard\\\\b"
+      ]
+    },
+    "serial": {
+      "ebay_mode": "slash_only",
+      "image_mode": "ofNN",
+      "include_first_number_if": [
+        "first_equals_1",
+        "first_equals_print_run"
+      ]
+    },
+    "rookie": {
+      "canonical": "RC",
+      "accept": [
+        "Rookie",
+        "RC",
+        "Rookie Card",
+        "R."
+      ]
+    },
+    "hit": {
+      "canonical_map": {
+        "auto": "Auto",
+        "patch": "Patch",
+        "patch auto": "Patch Auto",
+        "autograph": "Auto",
+        "signed": "Auto",
+        "relic": "Patch"
+      }
+    },
+    "whitespace": {
+      "collapse": true,
+      "trim": true
+    }
+  },
+  "source_doc": "Title_Structure.md"
+}

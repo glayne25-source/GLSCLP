@@ -1,1 +1,52 @@
-{}
+{
+  "version": "1.0.0",
+  "card_id": {
+    "mode": "sha1",
+    "inputs": ["image_front_sha1", "image_back_sha1"]
+  },
+  "sku": {
+    "prefix": "GL",
+    "width": 6,
+    "start": 1,
+    "format": "{prefix}{num:0{width}d}"
+  },
+  "file_naming": {
+    "image_ext": ".jpg",
+    "date_format": "yyyyMMdd",
+    "token_sep": " ",
+    "rules": {
+      "uppercase_team": false,
+      "strip_illegal_filename_chars": true,
+      "collapse_spaces": true
+    },
+    "patterns": {
+      "front_image": "{year} {brand} {set} {player} #{card_number} {parallel} {features} {serial} {team} {sku} {date}_F{ext}",
+      "back_image":  "{year} {brand} {set} {player} #{card_number} {parallel} {features} {serial} {team} {sku} {date}_B{ext}"
+    },
+    "drop_if_missing": ["parallel", "features", "serial", "team"],
+    "limits": {
+      "max_filename_chars": 170
+    }
+  },
+  "normalization": {
+    "card_number": {
+      "force_hash_prefix": true,
+      "strip_patterns": ["(?i)\\bno\\.?\\b", "(?i)\\bcard\\b"]
+    },
+    "serial": {
+      "mode": "slash_only"
+    },
+    "features": {
+      "canonical_order": ["RC", "Auto", "Patch", "Relic", "SP", "SSP", "Variation"],
+      "map": {
+        "rookie": "RC",
+        "autograph": "Auto",
+        "patch": "Patch",
+        "relic": "Relic",
+        "sp": "SP",
+        "ssp": "SSP",
+        "variation": "Variation"
+      }
+    }
+  }
+}

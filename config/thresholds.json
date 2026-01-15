@@ -1,1 +1,10 @@
-{}
+{
+  "version": "1.0.0",
+  "shipping": {
+    "bmwt_price_gt": 20.0
+  },
+  "quality": {
+    "min_ocr_confidence": 0.0,
+    "min_clip_similarity": 0.0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "defaults": [
+    {
+      "name": "Type",
+      "value": "Sports Trading Card",
+      "validation": "error"
+    },
+    {
+      "name": "Card Size",
+      "value": "Standard",
+      "validation": "error"
+    },
+    {
+      "name": "Country of Origin",
+      "value": "United States",
+      "validation": "error"
+    },
+    {
+      "name": "Material",
+      "value": "Card Stock",
+      "validation": "error"
+    },
+    {
+      "name": "Language",
+      "value": "English",
+      "validation": "error"
+    },
+    {
+      "name": "Original/Licensed Reprint",
+      "value": "Original",
+      "validation": "error"
+    },
+    {
+      "name": "Customized",
+      "value": "No",
+      "validation": "error"
+    },
+    {
+      "name": "Vintage",
+      "value": "No",
+      "validation": "error"
+    }
+  ],
+  "source": "user_locked_constants"
+}

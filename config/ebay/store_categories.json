@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "active_profile": "default",
+  "profiles": {
+    "default": {
+      "football": {
+        "id": 85543856013,
+        "path": null
+      },
+      "baseball": {
+        "id": 85543857013,
+        "path": null
+      },
+      "basketball": {
+        "id": 85565180013,
+        "path": null
+      },
+      "other": {
+        "id": 1,
+        "path": null
+      }
+    }
+  },
+  "selection": {
+    "field": "sport",
+    "map": {
+      "Football": "football",
+      "Baseball": "baseball",
+      "Basketball": "basketball"
+    },
+    "default": "other"
+  },
+  "notes": {
+    "inventory_api": "Inventory API uses storeCategoryNames (full path strings). Fill in .profiles.<profile>.<bucket>.path with the exact store path (e.g., \"/Sports Cards/Football Cards\") if you want it applied via Inventory API.",
+    "trading_api": "Trading API uses Storefront.StoreCategoryID / StoreCategory2ID numeric IDs; .id is used for that."
+  }
+}

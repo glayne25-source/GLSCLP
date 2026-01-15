@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "marketplace": "EBAY_US",
+  "schema_mode": "category_aware",
+  "global_defaults_file": "global_defaults.json",
+  "categories": {
+    "261328": {
+      "name": "Sports Trading Cards: Trading Card Singles",
+      "file": "cat_261328.json"
+    }
+  }
+}
