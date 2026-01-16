@@ -1,0 +1,54 @@
+{
+  "category_id": "261328",
+  "title": "2017 Panini Prizm Patrick Mahomes II #269 Silver /99 PSA 10 Chiefs RC",
+  "item_specifics": {
+    "Type": "Sports Trading Card",
+    "Card Size": "Standard",
+    "Country of Origin": "United States",
+    "Material": "Card Stock",
+    "Vintage": "No",
+    "Language": "English",
+    "Original/Licensed Reprint": "Original",
+    "Customized": "No",
+    "Player/Athlete": "Patrick Mahomes II",
+    "Manufacturer": "Panini",
+    "Set": "Prizm",
+    "Team": "Chiefs",
+    "Season": "2017",
+    "Year Manufactured": "2017",
+    "Parallel/Variety": "Silver",
+    "Professional Grader": "PSA",
+    "Grade": "10",
+    "Card Number": "269",
+    "Card Name": "Patrick Mahomes II",
+    "Print Run": "99",
+    "California Prop 65 Warning": "",
+    "Card Thickness": "35 Pt.",
+    "Features": [
+      "Base Set"
+    ]
+  },
+  "_debug": {
+    "input": {
+      "year": "2017",
+      "brand": "Panini",
+      "set": "Prizm",
+      "player_first": "Patrick",
+      "player_last": "Mahomes II ",
+      "card_number": "#269",
+      "insert": "false",
+      "parallel": "Silver",
+      "auto_patch": "false",
+      "serial_number": "/99",
+      "grading_company": "PSA",
+      "grade": "10",
+      "team_city": "Kansas City",
+      "team_name": "Chiefs",
+      "rookie": "RC"
+    },
+    "dropped_title_groups": [
+      "team_city"
+    ],
+    "unknown_item_specific_names": []
+  }
+}

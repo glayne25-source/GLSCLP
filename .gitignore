@@ -1,1 +1,4 @@
 ~$*
+__pycache__/
+runtime/
+run.ps1
