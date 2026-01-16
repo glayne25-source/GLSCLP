@@ -1,83 +1,10 @@
 {
-  "version": "1.0.0",
-  "marketplace": "EBAY_US",
-  "active_profile": "default",
-  "profiles": {
-    "default": {
-      "payment_policy_id": "213796689013",
-      "returns_policy_id": "230893350013",
-      "shipping": {
-        "default_shipping_policy_id": "248857393013",
-        "options": {
-          "standard_envelope": "248857393013",
-          "bmwt": "248857576013"
-        },
-        "selection_rules": [
-          {
-            "when_any": [
-              {
-                "field": "price",
-                "op": ">",
-                "value": 20
-              },
-              {
-                "field": "is_graded",
-                "op": "==",
-                "value": true
-              },
-              {
-                "field": "is_slabbed",
-                "op": "==",
-                "value": true
-              },
-              {
-                "field": "holder_type",
-                "op": "in",
-                "value": [
-                  "one_touch",
-                  "magnetic_holder",
-                  "slab"
-                ]
-              },
-              {
-                "field": "has_patch_or_relic",
-                "op": "==",
-                "value": true
-              }
-            ],
-            "use_shipping_policy_id": "248857576013",
-            "note": "BMWT trigger conditions from eBay Business Policies.txt"
-          }
-        ]
-      },
-      "store_categories": {
-        "football": {
-          "id": 85543856013,
-          "path": null
-        },
-        "baseball": {
-          "id": 85543857013,
-          "path": null
-        },
-        "basketball": {
-          "id": 85565180013,
-          "path": null
-        },
-        "other": {
-          "id": 1,
-          "path": null
-        }
-      },
-      "store_category_selection": {
-        "field": "sport",
-        "map": {
-          "Football": "football",
-          "Baseball": "baseball",
-          "Basketball": "basketball"
-        },
-        "default": "other"
-      }
-    }
+  "paymentPolicyId": "213796689013",
+  "returnPolicyId": "230893350013",
+  "shippingPolicyIds": {
+    "PWE_UNDER_20": "248857393013",
+    "BMWT_OVER_20": "248857576013"
   },
-  "source_doc": "eBay Business Policies.txt"
+  "scope": "global_for_all_listings",
+  "notes": "Shipping policy selection logic is intentionally NOT defined here."
 }

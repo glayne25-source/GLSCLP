@@ -1,0 +1,260 @@
+{
+  "categoryId": 261328,
+  "conditionDescriptors": [
+    {
+      "conditionId": 2750,
+      "descriptorName": "Professional Grader - (ID: 27501)",
+      "functionName": "ProfessionalGraderID27501",
+      "required": true,
+      "closed": true,
+      "values": [
+        {
+          "id": 275010,
+          "label": "Professional Sports Authenticator (PSA)"
+        },
+        {
+          "id": 275011,
+          "label": "Beckett Collectors Club Grading (BCCG)"
+        },
+        {
+          "id": 275012,
+          "label": "Beckett Vintage Grading (BVG)"
+        },
+        {
+          "id": 275013,
+          "label": "Beckett Grading Services (BGS)"
+        },
+        {
+          "id": 275014,
+          "label": "Certified Sports Guaranty (CSG)"
+        },
+        {
+          "id": 275015,
+          "label": "Certified Guaranty Company (CGC)"
+        },
+        {
+          "id": 275016,
+          "label": "Sportscard Guaranty Corporation (SGC)"
+        },
+        {
+          "id": 275017,
+          "label": "K Sportscard Authentication (KSA)"
+        },
+        {
+          "id": 275018,
+          "label": "Gem Mint Authentication (GMA)"
+        },
+        {
+          "id": 275019,
+          "label": "Hybrid Grading Approach (HGA)"
+        },
+        {
+          "id": 2750110,
+          "label": "International Sports Authentication (ISA)"
+        },
+        {
+          "id": 2750112,
+          "label": "Gold Standard Grading (GSG)"
+        },
+        {
+          "id": 2750113,
+          "label": "Platin Grading Service (PGS)"
+        },
+        {
+          "id": 2750114,
+          "label": "MNT Grading (MNT)"
+        },
+        {
+          "id": 2750115,
+          "label": "Technical Authentication & Grading (TAG)"
+        },
+        {
+          "id": 2750116,
+          "label": "Rare Edition (Rare)"
+        },
+        {
+          "id": 2750117,
+          "label": "Revolution Card Grading (RCG)"
+        },
+        {
+          "id": 2750119,
+          "label": "Ace Grading (Ace)"
+        },
+        {
+          "id": 2750120,
+          "label": "Card Grading Australia (CGA)"
+        },
+        {
+          "id": 2750121,
+          "label": "Trading Card Grading (TCG)"
+        },
+        {
+          "id": 2750123,
+          "label": "Other"
+        },
+        {
+          "id": 2750124,
+          "label": "Automated Grading Systems (AGS)"
+        },
+        {
+          "id": 2750125,
+          "label": "Diamond Service Grading (DSG)"
+        },
+        {
+          "id": 2750126,
+          "label": "Majesty Grading Company"
+        },
+        {
+          "id": 2750127,
+          "label": "GRAAD"
+        },
+        {
+          "id": 2750128,
+          "label": "Arena Club"
+        },
+        {
+          "id": 2750129,
+          "label": "AiGrading"
+        }
+      ]
+    },
+    {
+      "conditionId": 2750,
+      "descriptorName": "Grade - (ID: 27502)",
+      "functionName": "GradeID27502",
+      "required": true,
+      "closed": true,
+      "values": [
+        {
+          "id": 275020,
+          "label": "10"
+        },
+        {
+          "id": 275021,
+          "label": "9.5"
+        },
+        {
+          "id": 275022,
+          "label": "9"
+        },
+        {
+          "id": 275023,
+          "label": "8.5"
+        },
+        {
+          "id": 275024,
+          "label": "8"
+        },
+        {
+          "id": 275025,
+          "label": "7.5"
+        },
+        {
+          "id": 275026,
+          "label": "7"
+        },
+        {
+          "id": 275027,
+          "label": "6.5"
+        },
+        {
+          "id": 275028,
+          "label": "6"
+        },
+        {
+          "id": 275029,
+          "label": "5.5"
+        },
+        {
+          "id": 2750210,
+          "label": "5"
+        },
+        {
+          "id": 2750211,
+          "label": "4.5"
+        },
+        {
+          "id": 2750212,
+          "label": "4"
+        },
+        {
+          "id": 2750213,
+          "label": "3.5"
+        },
+        {
+          "id": 2750214,
+          "label": "3"
+        },
+        {
+          "id": 2750215,
+          "label": "2.5"
+        },
+        {
+          "id": 2750216,
+          "label": "2"
+        },
+        {
+          "id": 2750217,
+          "label": "1.5"
+        },
+        {
+          "id": 2750218,
+          "label": "1"
+        },
+        {
+          "id": 2750219,
+          "label": "Authentic"
+        },
+        {
+          "id": 2750220,
+          "label": "Authentic Altered"
+        },
+        {
+          "id": 2750221,
+          "label": "Authentic - Trimmed"
+        },
+        {
+          "id": 2750222,
+          "label": "Authentic - Colored"
+        },
+        {
+          "id": 2750223,
+          "label": "Sample"
+        }
+      ]
+    },
+    {
+      "conditionId": 2750,
+      "descriptorName": "Certification Number - (ID: 27503)",
+      "functionName": "CertificationNumberID27503",
+      "required": false,
+      "closed": false,
+      "values": []
+    },
+    {
+      "conditionId": 4000,
+      "descriptorName": "Card Condition - (ID: 40001)",
+      "functionName": "CardConditionID40001",
+      "required": true,
+      "closed": true,
+      "values": [
+        {
+          "id": 400010,
+          "label": "Near mint or better"
+        },
+        {
+          "id": 400011,
+          "label": "Excellent"
+        },
+        {
+          "id": 400012,
+          "label": "Very good"
+        },
+        {
+          "id": 400013,
+          "label": "Poor"
+        }
+      ]
+    }
+  ]
+}
