@@ -1,122 +1,160 @@
 {
+  "version": "0.2.0-draft",
   "category_id": "261328",
-  "status": "DRAFT",
-  "purpose": "Enforced business-quality requirements and deterministic overrides for listings in category 261328. This file is NOT the eBay schema and is allowed to contain your rules.",
-
-  "gates": {
-    "inject_all_globals_confirmation_required": true,
-    "notes": "Before any eBay push, require the explicit 'inject all globals confirmation' step to pass."
+  "scope": {
+    "sealed_boxes_and_packs": "excluded",
+    "notes": "Rules apply to trading card singles only."
   },
 
-  "minimum_fields": {
-    "title_components_must_exist": [
-      "year",
-      "manufacturer",
-      "set",
-      "player_name",
-      "card_number"
-    ],
-    "item_specifics_must_exist": [
-      "Sport",
-      "Type",
-      "Player/Athlete",
-      "Year Manufactured",
-      "Manufacturer",
-      "Set",
-      "Card Number"
-    ],
-    "warn_if_missing": [
-      "Team",
-      "League",
-      "Features",
-      "Parallel/Variety",
-      "Season",
-      "Card Size",
-      "Language",
-      "Autographed",
-      "Signed",
-      "Vintage",
-      "Rookie",
-      "Insert",
-      "Insert Set",
-      "Serial Numbered",
-      "Print Run"
+  "require_globals_injected": true,
+
+  "entry_types": {
+    "Print Run": "derived",
+    "Insert Set": "free_text",
+    "Card Number": "free_text",
+    "Card Name": "free_text",
+    "Signed By": "override_allowed",
+
+    "Player/Athlete": "dropdown_strict",
+    "Season": "dropdown_strict",
+    "Manufacturer": "dropdown_strict",
+    "Parallel/Variety": "dropdown_strict",
+    "Features": "dropdown_strict_multi",
+    "Set": "dropdown_strict",
+    "Team": "dropdown_strict",
+    "League": "dropdown_strict",
+    "Autograph Authentication": "dropdown_strict",
+    "Autograph Format": "dropdown_strict",
+    "Year Manufactured": "dropdown_strict",
+    "Card Size": "dropdown_strict",
+    "Country of Origin": "dropdown_strict",
+    "Material": "dropdown_strict",
+    "Event/Tournament": "dropdown_strict",
+    "Language": "dropdown_strict",
+    "Card Thickness": "dropdown_strict",
+    "Customized": "dropdown_strict",
+    "Type": "dropdown_strict",
+
+    "Autographed": "binary",
+    "Vintage": "binary",
+    "Original/Licensed Reprint": "binary"
+  },
+
+  "derive_and_enforce": {
+    "Card Name": {
+      "from": "player_name",
+      "validation": "enforce_if_present"
+    },
+    "Card Number": {
+      "from": "card_number",
+      "transform": "strip_hash",
+      "validation": "enforce_if_present"
+    },
+    "Print Run": {
+      "from": "serial_number",
+      "transform": "serial_denominator_only_no_slash",
+      "validation": "enforce_if_serial_present"
+    },
+    "Year Manufactured": {
+      "from": "year",
+      "validation": "enforce"
+    },
+    "Season": {
+      "from": "year",
+      "validation": "enforce"
+    }
+  },
+
+  "conditional_aspects": {
+    "Event/Tournament": {
+      "rules": [
+        { "when": { "Sport": "Football" }, "value": "Super Bowl" },
+        { "when": { "Sport": "Basketball" }, "value": "NBA Finals" },
+        { "when": { "Sport": "Baseball" }, "value": "MLB World Series" }
+      ],
+      "validation": "enforce_when_sport_present"
+    },
+    "League": {
+      "rules": [
+        { "when": { "Sport": "Football" }, "value": "National Football League (NFL)" },
+        { "when": { "Sport": "Baseball" }, "value": "Major League Baseball (MLB)" },
+        { "when": { "Sport": "Basketball" }, "value": "National Basketball Association (NBA)" }
+      ],
+      "validation": "enforce_when_sport_present"
+    },
+    "Card Thickness": {
+      "default": "35 Pt.",
+      "exceptions": [
+        {
+          "when": { "Features_any": ["Memorabilia"] },
+          "value": ""
+        }
+      ],
+      "validation": "enforce"
+    },
+    "California Prop 65 Warning": {
+      "value": "",
+      "validation": "explicit_blank"
+    }
+  },
+
+  "autograph_rules": {
+    "Autographed": {
+      "when_no": {
+        "Signed By": "",
+        "Autograph Authentication": "",
+        "Autograph Authentication Number": "",
+        "Autograph Format": ""
+      },
+      "when_yes": {
+        "Signed By": { "from": "player_name", "override_allowed": true },
+        "Autograph Authentication": { "value": "Brand / Manufacturer" },
+        "Autograph Authentication Number": "",
+        "Autograph Format": {
+          "allowed_by_policy": ["Hard Signed", "Label or Sticker"],
+          "disallowed_by_policy": ["Cut"]
+        }
+      },
+      "validation": "enforce_dependencies"
+    }
+  },
+
+  "features_rules": {
+    "minimum_one_of": ["Rookie", "Parallel/Variety", "Base Set"],
+    "default_if_none_detected": ["Base Set"],
+    "conditional_add": [
+      { "if": "is_insert", "add": "Insert" },
+      { "if": "has_serial", "add": "Serial Numbered" },
+      { "if": "is_memorabilia", "add": "Memorabilia" },
+      { "if": "is_short_print", "add": "Short Print" }
     ]
   },
 
-  "observed_to_aspects_enforcement": {
-    "notes": "These rules only apply when upstream vision/OCR provides observed values. No inference is performed here.",
+  "parallel_variety_rules": {
+    "default": "[Base]",
+    "validation": "enforce_if_missing"
+  },
 
-    "serial_to_print_run": {
-      "observed_field": "observed.serial",
-      "target_aspect": "Print Run",
-      "rule": "If observed.serial exists, Print Run must equal the denominator (e.g., '12/99' -> '99', '/99' -> '99', '1/1' -> '1').",
-      "on_failure": "block"
-    },
-
-    "insert_to_insert_set": {
-      "observed_field": "observed.insert_set",
-      "target_aspect": "Insert Set",
-      "rule": "If observed.insert_set exists (non-empty), Insert Set must equal that value.",
-      "on_failure": "block"
+  "shipping_enforcement": {
+    "override_policy": "BMWT_OVER_20",
+    "force_bmwt_if_any": [
+      { "reason": "graded_or_slabbed", "when": { "observed.grading.company": "*" } },
+      { "reason": "encased_one_touch_magnetic", "when": { "observed.holder": ["One-Touch", "Magnetic", "Encased"] } },
+      { "reason": "patch_relic_memorabilia", "when": { "observed.features_any": ["Patch", "Relic", "Memorabilia"] } }
+    ],
+    "combined_shipping": {
+      "pwe_each_additional_usd": 0.5,
+      "bmwt_each_additional_usd": 1.0,
+      "auto_upgrade_to_bmwt_if_pwe_items_gte": 4,
+      "auto_upgrade_bmwt_price_usd": 4.95,
+      "max_shipping_usd": 8.95
     }
   },
 
-  "shipping": {
-    "policy_ids_source": "config/ebay/policies.json",
-    "policy_keys": {
-      "PWE": "PWE_UNDER_20",
-      "BMWT": "BMWT_OVER_20"
-    },
-
-    "force_bmwt_overrides": {
-      "notes": "These conditions force BMWT regardless of price.",
-      "override_policy_key": "BMWT",
-      "force_if_any": [
-        {
-          "reason": "graded_or_slabbed",
-          "when": {
-            "observed.grading.company": "*"
-          },
-          "examples": ["PSA", "BGS", "SGC", "CGC", "TAG"]
-        },
-        {
-          "reason": "patch_or_relic",
-          "when": {
-            "observed.features_any": ["Patch", "Relic", "Memorabilia"]
-          }
-        },
-        {
-          "reason": "encased_one_touch_magnetic_holder",
-          "when": {
-            "observed.holder_any": ["One-Touch", "Magnetic", "Encased", "Magnetic Holder", "One Touch"]
-          }
-        }
-      ]
-    },
-
-    "combined_shipping": {
-      "notes": "Draft notes from your combined shipping setup; values captured so we don't forget. Selection logic still lives in pipeline, not in policies.json.",
-
-      "promotional_shipping_rule": {
-        "type": "minimum_number_of_items_purchased",
-        "min_items": 4,
-        "shipping_cost": 4.95,
-        "free_shipping": false
-      },
-
-      "each_additional_item_profiles": {
-        "PWE": {
-          "profile_name": "$0.5 for PWE",
-          "profile_id": "1437599013",
-          "each_additional_cost": 0.50
-        },
-        "BMWT": {
-          "profile_name": "$1 for BMWT",
-          "profile_id": "1437600013",
-          "each_additional_cost": 1.00
-        }
-      }
-    }
-  }
+  "pipeline_notes": [
+    "Typed vs dropdown is explicit via entry_types; pipeline must never emit literal false/None strings.",
+    "Print Run is treated as DERIVED even though UI allows typing; denominator only, no '/'.",
+    "Signed By is the only dropdown that may be overridden with free text (player name) if necessary.",
+    "Set aspect dropdown values may embed [Year]_[Brand]_[Set]; do not use Set for year matching."
+  ]
 }
