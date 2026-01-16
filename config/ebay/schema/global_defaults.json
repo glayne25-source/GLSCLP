@@ -1,14 +1,11 @@
 {
-  "version": "1.0.0",
-  "source": "user_locked_constants",
-  "item_specifics": {
-    "Type": "Sports Trading Card",
-    "Card Size": "Standard",
-    "Country of Origin": "United States",
-    "Material": "Card Stock",
-    "Vintage": "No",
-    "Language": "English",
-    "Original/Licensed Reprint": "Original",
-    "Customized": "No"
-  }
+  "Type": "Sports Trading Card",
+  "Card Size": "Standard",
+  "Country of Origin": "United States",
+  "Material": "Card Stock",
+  "Vintage": "No",
+  "Language": "English",
+  "Original/Licensed Reprint": "Original",
+  "Customized": "No"
 }
+
